@@ -5,6 +5,7 @@ import glob
 from PIL import Image
 import sqlite3
 from slugify import slugify
+import imagesize
 
 basePathForPhotos = '/Users/Shared/wedding stuff/Photos/'
 encodedFacesDBPath = 'test_encoded-faces.dat'
@@ -64,6 +65,7 @@ for testImage_path in imagesInFolder:
 
 	testImage_path_split = testImage_path.split('/')
 	testImage_URL = f"{testImage_path_split[-2]}/{testImage_path_split[-1]}"
+
 	print (f"generated URL {testImage_URL} for image. Inserting to database")
 
 	sqlCall = f"INSERT INTO photos (photo_filename, event_id) VALUES (\'{testImage_URL}\', {event_index})"
@@ -73,6 +75,7 @@ for testImage_path in imagesInFolder:
 	photoIndex = cur.lastrowid
 
 	testImage = fr.load_image_file(testImage_path)
+	testImage_width, testImage_height = imagesize.get(testImage_path)
 	testImage_faceLocations = fr.face_locations(testImage)
 	testImage_faceEncodings = fr.face_encodings(testImage, known_face_locations = testImage_faceLocations, model='large')
 	print (f"{len(testImage_faceEncodings)} faces found in image")
@@ -153,10 +156,21 @@ for testImage_path in imagesInFolder:
 
 
 			top, right, bottom, left = testImage_faceLocations[elem['index']]
-			sqlCall = f'''INSERT INTO facesInPhotos (face_id, photo_id, faceInPhoto_left, faceInPhoto_right, faceInPhoto_top, faceInPhoto_bottom, match_distance) VALUES
+			topPC = top / testImage_height
+			bottomPC = bottom / testImage_height
+			rightPC = right / testImage_width
+			leftPC = left / testImage_width
+
+			sqlCall = f'''INSERT INTO facesInPhotos (
+							face_id, 
+							photo_id, 
+							faceInPhoto_left_abs, faceInPhoto_right_abs, faceInPhoto_top_abs, faceInPhoto_bottom_abs, 
+							faceInPhoto_left_pc, faceInPhoto_right_pc, faceInPhoto_top_pc, faceInPhoto_bottom_pc, 
+							match_distance) VALUES
 							({elem['matchedToDB_index']},
 							{photoIndex},
 							{left},{right},{top},{bottom},
+							{leftPC},{rightPC},{topPC},{bottomPC},
 							{elem['match_distance']})'''
 			cur.execute(sqlCall)
 			z = con.commit()

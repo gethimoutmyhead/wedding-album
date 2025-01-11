@@ -4,8 +4,10 @@ from PIL import Image
 import pickle
 import sqlite3
 
+encodedFacesDBPath = 'wedding-album_encoded-faces.dat'
+photoAlbum_DB = 'wedding-album.db'
 
-con = sqlite3.connect('wedding_album.db')
+con = sqlite3.connect(photoAlbum_DB)
 cur = con.cursor()
 cur.execute('PRAGMA foreign_keys = ON')
 
@@ -43,7 +45,7 @@ for image_path in PortraitDirectoryList:
 			facesFoundIndex +=1
 
 
-with open('test_encoded-faces.dat', 'wb') as f:
+with open(encodedFacesDBPath, 'wb') as f:
     pickle.dump(faceEncodingsDB, f)
 
 con.close()

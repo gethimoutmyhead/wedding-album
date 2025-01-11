@@ -1,6 +1,7 @@
 import sqlite3
+photoAlbum_DB = 'wedding-album.db'
 
-con = sqlite3.connect('wedding-album.db')
+con = sqlite3.connect(photoAlbum_DB)
 cur = con.cursor()
 
 cur.execute('PRAGMA foreign_keys = YES')
@@ -30,10 +31,14 @@ cur.execute('''CREATE TABLE IF NOT EXISTS facesInPhotos(
 	faceInPhoto_id INTEGER PRIMARY KEY,
 	face_id INT,
 	photo_id INT,
-	faceInPhoto_left REAL,
-	faceInPhoto_right REAL,
-	faceInPhoto_top REAL,
-	faceInPhoto_bottom REAL,
+	faceInPhoto_left_abs REAL,
+	faceInPhoto_right_abs REAL,
+	faceInPhoto_top_abs REAL,
+	faceInPhoto_bottom_abs REAL,
+	faceInPhoto_left_pc REAL,
+	faceInPhoto_right_pc REAL,
+	faceInPhoto_top_pc REAL,
+	faceInPhoto_bottom_pc REAL,
 	match_distance REAL,
 	FOREIGN KEY (face_id) REFERENCES faces(face_id),
 	FOREIGN KEY (photo_id) REFERENCES photos(photo_id))
