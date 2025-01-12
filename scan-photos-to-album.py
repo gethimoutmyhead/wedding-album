@@ -6,10 +6,11 @@ from PIL import Image
 import sqlite3
 from slugify import slugify
 import imagesize
+import test_dbsettings as dbsettings
+basePathForPhotos = dbsettings.basePathForPhotos #'/Users/Shared/wedding stuff/Photos/'
+encodedFacesDBPath = dbsettings.encodedFacesDBPath #test_encoded-faces.dat'
+photoAlbum_DB = dbsettings.photoAlbum_DB #test_wedding-album.db'
 
-basePathForPhotos = '/Users/Shared/wedding stuff/Photos/'
-encodedFacesDBPath = 'test_encoded-faces.dat'
-photoAlbum_DB = 'test_wedding-album.db'
 faceDistance_tolerance = 0.5
 
 with open(encodedFacesDBPath, 'rb') as f:
