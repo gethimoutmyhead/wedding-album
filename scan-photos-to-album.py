@@ -6,10 +6,10 @@ from PIL import Image
 import sqlite3
 from slugify import slugify
 import imagesize
-import test_dbsettings as dbsettings
-basePathForPhotos = dbsettings.basePathForPhotos #'/Users/Shared/wedding stuff/Photos/'
-encodedFacesDBPath = dbsettings.encodedFacesDBPath #test_encoded-faces.dat'
-photoAlbum_DB = dbsettings.photoAlbum_DB #test_wedding-album.db'
+import main_dbsettings as dbsettings
+basePathForPhotos = dbsettings.basePathForPhotos
+encodedFacesDBPath = dbsettings.encodedFacesDBPath
+photoAlbum_DB = dbsettings.photoAlbum_DB
 
 faceDistance_tolerance = 0.5
 
@@ -42,7 +42,7 @@ searchPath = f"{directoryOptions[directoryIndexChosen]}/"
 imagesInFolder = glob.glob(f"{searchPath}*.jpg")
 imagesInFolder += glob.glob(f"{searchPath}*.jpeg")
 print (f'{len(imagesInFolder)} found')
-
+imagesInFolder = sorted(imagesInFolder)
 directoryPath_split = directoryOptions[directoryIndexChosen].split('/')
 
 event_name = directoryPath_split[-1]
@@ -140,7 +140,7 @@ for testImage_path in imagesInFolder:
 				latestIndex = len(encodedFacesDB) - 1
 				elem['matchedToDB_index'] = latestIndex
 				elem['match_distance'] = 0
-				personNumString = "{:04d}".format(latestIndex)
+				personNumString = "{:05d}".format(latestIndex)
 				personName = f"person_{personNumString}"
 				personURL = slugify(personName)
 				print ('adding new face to DB')

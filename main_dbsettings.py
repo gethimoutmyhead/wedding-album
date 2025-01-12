@@ -1,3 +1,3 @@
 basePathForPhotos = '/Users/Shared/wedding stuff/Photos/'
-encodedFacesDBPath = 'test_encoded-faces.dat'
-photoAlbum_DB = 'test_wedding-album.db'
+encodedFacesDBPath = 'wedding-album_encoded-faces.dat'
+photoAlbum_DB = 'wedding-album.db'
