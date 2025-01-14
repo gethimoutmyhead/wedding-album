@@ -6,7 +6,7 @@ from PIL import Image
 import sqlite3
 from slugify import slugify
 import imagesize
-import test_dbsettings as dbsettings
+import main_dbsettings as dbsettings
 basePathForPhotos = dbsettings.basePathForPhotos
 encodedFacesDBPath = dbsettings.encodedFacesDBPath
 photoAlbum_DB = dbsettings.photoAlbum_DB
@@ -59,7 +59,7 @@ for index, imagePath in enumerate(imagesInFolder):
 		print (f"{imageURL} is in DB already, dont scan")
 for elem in imagesInFolder_newtoDB:
 	print (f"adding {elem} to the db")
-	
+
 imagesInFolder = imagesInFolder_newtoDB
 
 directoryPath_split = directoryOptions[directoryIndexChosen].split('/')
