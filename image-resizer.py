@@ -1,5 +1,5 @@
 from PIL import Image
-import test_dbsettings as db_settings
+import main_dbsettings as db_settings
 import sqlite3
 import os
 import errno
@@ -67,7 +67,7 @@ for elem in z.fetchall():
 		exportName = f"{directory}{fileNameWithoutExtension}_{resizedWidth}x{resizedHeight}.jpg"
 		
 		print (f"exporting to {exportName}")
-		# im_resized.save(exportName)
+		im_resized.save(exportName)
 
 		URL = f"{exportName.split('/')[-3]}/{exportName.split('/')[-2]}/{exportName.split('/')[-1]}"
 		print (f"checking if {URL} is already in the database")
@@ -90,5 +90,5 @@ for elem in z.fetchall():
 				{resizedWidth}, {resizedHeight},
 				0,0)'''
 			cur.execute(sqlCall)
-			#con.commit()
+			con.commit()
 

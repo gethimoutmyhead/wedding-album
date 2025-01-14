@@ -1,5 +1,5 @@
 import sqlite3
-import test_dbsettings as db_settings
+import main_dbsettings as db_settings
 photoAlbum_DB = db_settings.photoAlbum_DB#'wedding-album.db'
 
 con = sqlite3.connect(photoAlbum_DB)

@@ -1,11 +1,14 @@
 import sqlite3
-import test_dbsettings as dbs
+import main_dbsettings as dbs
 import json
 con = sqlite3.connect(dbs.photoAlbum_DB)
 cur = con.cursor()
 cur.execute('PRAGMA foreign_keys = ON')
 
-sqlCall = 'SELECT sourcePhoto_id, URL from scaledPhotos WHERE scaled_width = 500'
+sqlCall = '''SELECT scaledPhotos.sourcePhoto_id, scaledPhotos.URL, photos.event_ID 
+	from scaledPhotos
+	JOIN photos ON scaledPhotos.sourcePhoto_id = photos.photo_id
+	WHERE scaledPhotos.scaled_width = 500 AND photos.event_ID = 3'''
 z = cur.execute(sqlCall)
 photoList = z.fetchall()
 
