@@ -6,7 +6,7 @@ from PIL import Image
 import sqlite3
 from slugify import slugify
 import imagesize
-import main_dbsettings as dbsettings
+import test_dbsettings as dbsettings
 basePathForPhotos = dbsettings.basePathForPhotos
 encodedFacesDBPath = dbsettings.encodedFacesDBPath
 photoAlbum_DB = dbsettings.photoAlbum_DB
@@ -41,8 +41,27 @@ directoryIndexChosen = int(input("choose a directory: "))
 searchPath = f"{directoryOptions[directoryIndexChosen]}/"
 imagesInFolder = glob.glob(f"{searchPath}*.jpg")
 imagesInFolder += glob.glob(f"{searchPath}*.jpeg")
+imagesInFolder += glob.glob(f"{searchPath}*.JPG")
+imagesInFolder += glob.glob(f"{searchPath}*.JPEG")
 print (f'{len(imagesInFolder)} found')
 imagesInFolder = sorted(imagesInFolder)
+imagesInFolder_newtoDB = []
+for index, imagePath in enumerate(imagesInFolder):
+	imagePathSplit = imagePath.split('/')
+	imageURL = f"{imagePathSplit[-2]}/{imagePathSplit[-1]}"
+	sqlCall = f"SELECT photo_id FROM photos WHERE photo_filename = \'{imageURL}\'"
+	z = cur.execute(sqlCall)
+	result = z.fetchall()
+	if not result:
+		print (f"{imageURL} is not yet in DB")
+		imagesInFolder_newtoDB.append(imagePath)
+	else:
+		print (f"{imageURL} is in DB already, dont scan")
+for elem in imagesInFolder_newtoDB:
+	print (f"adding {elem} to the db")
+	
+imagesInFolder = imagesInFolder_newtoDB
+
 directoryPath_split = directoryOptions[directoryIndexChosen].split('/')
 
 event_name = directoryPath_split[-1]
