@@ -8,7 +8,7 @@ cur.execute('PRAGMA foreign_keys = ON')
 sqlCall = '''SELECT scaledPhotos.sourcePhoto_id, scaledPhotos.URL, photos.event_ID 
 	from scaledPhotos
 	JOIN photos ON scaledPhotos.sourcePhoto_id = photos.photo_id
-	WHERE scaledPhotos.scaled_width = 500 AND photos.event_ID = 3'''
+	WHERE scaledPhotos.scaled_width = 500 AND photos.event_ID = 6'''
 z = cur.execute(sqlCall)
 photoList = z.fetchall()
 

@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageOps
 import main_dbsettings as db_settings
 import sqlite3
 import os
@@ -56,6 +56,7 @@ for elem in z.fetchall():
 	fullImagefilePath = f"{basePathForPhotos}{sourcePhoto_filename}"
 	print (fullImagefilePath)
 	im = Image.open(f"{basePathForPhotos}{sourcePhoto_filename}")
+	im = ImageOps.exif_transpose(im)
 	width, height = im.size
 	for dimension in targetDimensions:
 		resizedWidth = dimension["width"]
