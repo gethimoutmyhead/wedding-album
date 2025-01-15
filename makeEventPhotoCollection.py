@@ -23,12 +23,6 @@ theCall = '''SELECT scaledPhotos.sourcePhoto_id, scaledPhotos.URL, photos.event_
 	JOIN photos ON scaledPhotos.sourcePhoto_id = photos.photo_id
 	WHERE scaledPhotos.scaled_width = 1200 AND photos.event_ID = 3'''
 
-theCall = '''SELECT scaledPhotos.sourcePhoto_id, scaledPhotos.URL, facesInPhotos.face_id, faces.face_name 
-	FROM scaledPhotos 
-	JOIN photos ON scaledPhotos.sourcePhoto_id = photos.photo_id 
-	JOIN facesInPhotos ON photos.photo_id = facesInPhotos.photo_id 
-	JOIN faces on faces.face_id = facesInPhotos.face_id 
-	WHERE faces.face_id = 40'''
 
 sqlCall = theCall
 z = cur.execute(sqlCall)
