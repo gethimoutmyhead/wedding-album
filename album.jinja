@@ -1,0 +1,107 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<title> {{headerstuff["title"]}} </title>
+<header>
+
+	<script type="text/javascript" src="{{headerstuff['JSPhotoList']}}"></script>
+	<script type="text/javascript">
+		galleryIndex = 0;
+		function onStart(){
+				galleryIndex = 0;
+				document.getElementById('mainpic').src = gallery[galleryIndex].URL;
+				document.getElementById('picText').innerHTML= (galleryIndex + 1) + " of " + gallery.length;
+
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		}
+		function nextPic(){
+			galleryIndex +=1;
+			if (galleryIndex >= gallery.length){
+				galleryIndex = 0;
+			}
+			document.getElementById('mainpic').src = gallery[galleryIndex].URL;
+			document.getElementById('picText').innerHTML= (galleryIndex + 1) + " of " + gallery.length;
+			// document.getElementById("mainpic").scrollIntoView();
+		}
+		function previousPic(){
+			galleryIndex -=1;
+			if (galleryIndex < 0){
+				galleryIndex = gallery.length - 1;
+			}
+			document.getElementById('mainpic').src = gallery[galleryIndex].URL;
+			document.getElementById('picText').innerHTML= (galleryIndex + 1) + " of " + gallery.length;
+			// document.getElementById("mainpic").scrollIntoView();
+		}
+		function choosePic(pIndex){
+			galleryIndex = pIndex;
+			document.getElementById('mainpic').src = gallery[galleryIndex].URL;
+			document.getElementById('picText').innerHTML= (galleryIndex + 1) + " of " + gallery.length;
+			document.getElementById("mainpic").scrollIntoView();
+		}
+	</script>
+
+</header>
+<h1 class='w3-center'> {{headerstuff["headline"]}} </h1>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1ZG5K7T2G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z1ZG5K7T2G');
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+
+
+<body style="background-color: black; color: gold;">
+	<div class='w3-row'>
+		<div class="w3-col s12 m12 l12 w3-center" id='my35'>
+			<div class="w3-display-container">
+				<img id="mainpic" style="height:80%; max-width: 100%; object-fit: scale-down;">
+				</img>
+
+			</div>
+		</div>
+
+	</div>
+	<div class="w3-row">
+		<div class="w3-col s12 m12 l12 w3-center">
+				<div class="w3-col s5 m5 l5">
+					<button class='w3-button w3-circle w3-black w3-right' onclick="previousPic()"><</button>
+				</div>
+				<div class='w3-col s2 m2 l2 w3-center' style="padding-top: 5px" id='picText'></div>
+				<button class='w3-button w3-circle w3-black w3-left' onclick="nextPic()">></button>
+
+		</div>
+
+	</div>
+	<div id='gg'></div>
+	<div class='w3-row' style="height: 40%; overflow-y: scroll;">
+		<div class="w3-col w3-hide-small m1 l3"><p></p></div>
+		<div class="w3-col s4 m3 l2">
+			<img class="lozad" data-src="/Users/Shared/Wedding stuff/Photos/Malaysia engagement/scaled/mitra-3_500x750.jpg" style="width: 100%">
+				
+			</img>
+		</div>
+		<div class="w3-col s4 m3 l2">
+			<img src="/Users/Shared/Wedding stuff/Photos/Malaysia engagement/scaled/mitra-26_500x333.jpg" style="width: 100%"></img>
+			<img src="/Users/Shared/Wedding stuff/Photos/Malaysia engagement/scaled/mitra-52-1_500x750.jpg" style="max-width: 100%"></img>
+			<img src="/Users/Shared/Wedding stuff/Photos/Malaysia engagement/scaled/mitra-67_500x771.jpg" style="max-width: 100%" onclick="choosePic(4)"></img>
+
+		</div>
+		<div class="w3-col s4 m3 l2">
+			<img src="/Users/Shared/Wedding stuff/Photos/Malaysia engagement/scaled/mitra-69_500x750.jpg" style="width: 100%"></img>
+			<img src="/Users/Shared/Wedding stuff/Photos/Malaysia engagement/scaled/mitra-65_500x772.jpg" style="max-width: 100%"></img>
+			<img src="/Users/Shared/Wedding stuff/Photos/Malaysia engagement/scaled/mitra-76_500x333.jpg" style="max-width: 100%" onclick="choosePic(4)"></img>
+
+		</div>
+	</div>	
+
+</body>
+	<script type="text/javascript">
+
+	</script>
+</html>
