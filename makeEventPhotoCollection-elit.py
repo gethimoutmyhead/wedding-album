@@ -11,16 +11,30 @@ con = sqlite3.connect(dbs.photoAlbum_DB)
 cur = con.cursor()
 cur.execute('PRAGMA foreign_keys = ON')
 
-personID = 40
-sqlCall = f'SELECT face_name, face_URL FROM faces WHERE face_id = {personID}'
+eventID = 0
+sqlCall = 'SELECT * FROM events'
 z = cur.execute(sqlCall)
 result = z.fetchall()
-face_name = result[0][0]
-face_url = result[0][1]
+for event in result:
+	print (event)
+
+eventID = int(input('Choose an event:'))
+if ((eventID) and (eventID > 0) and (eventID <= len(result))):
+	print (f'you chose {eventID}')
+else:
+	print('choice out of bounds, exiting')
+	exit()
+
+sqlCall = f'SELECT event_name, event_URL FROM events WHERE event_id = {eventID}'
+z = cur.execute(sqlCall)
+result = z.fetchall()
+
+event_name = result[0][0]
+event_url = result[0][1]
 
 template = env.get_template('elit1.jinja')
 outputPath = 'test_static/'
-outputHTML_filename = f'{face_url}.html'
+outputHTML_filename = f'{event_url}.html'
 
 onlineURLForImages = 'https://s3.ap-southeast-1.amazonaws.com/shashi-and-trisha-wedd.ing/'
 localURLForImages = dbs.basePathForPhotos
@@ -32,8 +46,8 @@ theCall = f'''SELECT scaledPhotos.sourcePhoto_id, scaledPhotos.URL, facesInPhoto
 	JOIN photos ON scaledPhotos.sourcePhoto_id = photos.photo_id 
 	JOIN facesInPhotos ON photos.photo_id = facesInPhotos.photo_id 
 	JOIN faces on faces.face_id = facesInPhotos.face_id 
-	WHERE faces.face_id = {personID} and scaledPhotos.scaled_width = 500 
-	ORDER BY ((facesInPhotos.faceInPhoto_right_abs - facesInPhotos.faceInPhoto_left_abs) * (facesInPhotos.faceInPhoto_bottom_abs - facesInPhotos.faceInPhoto_top_abs)) DESC'''
+	WHERE photos.event_id = {eventID} and scaledPhotos.scaled_width = 500 
+	ORDER BY photos.photo_filename ASC'''
 
 sqlCall = theCall
 z = cur.execute(sqlCall)
@@ -60,15 +74,10 @@ for index, photo in enumerate(photoList):
 	photoListInDict += [{'smallurl': fullURLSmall, 'bigurl': fullURLBig, 'bindex': index}]
 
 
-# photoColumn1 = [{'burl': 'cheese'},{'burl': 'Chess'}]
-
-photoColumn1 = photoListInDict[::3]
-photoColumn2 = photoListInDict[1::3]
-photoColumn3 = photoListInDict[2::3]
 
 #print (photoColumn1)
 # rendering the template and storing the resultant text in variable output
-myNewHeader = {"title": f"Photos of {face_name}", "headline": f"{face_name}"}
+myNewHeader = {"title": f"Photos of {event_name}", "headline": f"{event_name}"}
 output = template.render(headerstuff = myNewHeader, picList = photoListInDict)
 
 # printing the output on screen
