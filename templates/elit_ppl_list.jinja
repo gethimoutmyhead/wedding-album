@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 
     <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/fancybox.css">
+    <link rel="stylesheet" href="css/fancybox.min.css">
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -75,21 +75,16 @@
 
     <div class="container-fluid">
         
-      
+      <span><br><br><br></span>
 
 
       <section class="row align-items-stretch photos" id="section-photos">
         <div class="col-12">
         <div class="row align-items-stretch">
-        {% for item in picList %}
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-         <a href="{{item.bigurl}}" class="d-block photo-item" data-fancybox="gallery" data-download-src="{{item.bigurl}}">
-            <img class="lozad" src="images/placeholder-mand.png" style="object-position: 50% 20%" data-src="{{item.smallurl}}" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <span class="icon icon-search"></span>
-            </div>
-          </a>
-        </div>
+
+        {% for item in personList %}
+        <a href="{{item.faceURL}}"><h3>{{item.facename}}</h3></a>
+        <p>___</p>
         {% endfor %}
 
       </div>
@@ -125,7 +120,7 @@
   <script src="js/aos.js"></script>
   
 
-  <script src="js/fancybox.umd.js"></script>
+  <script src="js/jquery.fancybox.min.js"></script>
 
   <script src="js/main.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
@@ -133,16 +128,6 @@
   <script>
       const observer = lozad(); // lazy loads elements with default selector as '.lozad'
       observer.observe();
-  </script>
-  <script>
-    Fancybox.bind('[data-fancybox="gallery"]',{
-      Toolbar: {
-        display:{
-          left:["infobar"],
-          middle:[],
-          right:["slideshow", "download", "thumbs", "close",],
-        }
-        }})
   </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1ZG5K7T2G"></script>
   <script>

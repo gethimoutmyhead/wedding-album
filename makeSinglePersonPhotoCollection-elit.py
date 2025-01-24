@@ -11,14 +11,10 @@ con = sqlite3.connect(dbs.photoAlbum_DB)
 cur = con.cursor()
 cur.execute('PRAGMA foreign_keys = ON')
 
-personID = 254
+personID = 245
 
-sqlCall = '''SELECT face_id from faces 
-	WHERE face_name NOT LIKE \'%blob%\' 
-	AND face_name NOT LIKE \'%blur%\' 
-	AND face_name NOT LIKE \'%profile%\' 
-	AND face_name NOT LIKE \'%Person%\'
-	ORDER BY face_name ASC'''
+sqlCall = f'''SELECT face_id from faces 
+	WHERE face_id = {personID}'''
 z = cur.execute(sqlCall)
 result = z.fetchall()
 
