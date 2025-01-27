@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{headerstuff["title"]}}</title>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900|Oswald:400,700" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}css/magnific-popup.css">
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}css/jquery-ui.css">
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}css/aos.css">
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}css/fancybox.css">
+
+    <link rel="stylesheet" href="{{headerstuff['baseURLForFrontEnd']}}css/style.css">
+
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="200">
+  
+
+  <div class="site-wrap">
+
+  <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+  
+  <header class="header-bar d-flex d-lg-block align-items-center site-navbar-target" data-aos="fade-right">
+    <div class="site-logo">
+      <a href="{{headerstuff['baseURLForFrontEnd']}}index.html">S &#x2661; T</a>
+    </div>
+    
+    <div class="d-inline-block d-lg-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+    <div class="main-menu">
+      <ul class="js-clone-nav">
+        <li><a href="{{headerstuff['baseURLForFrontEnd']}}index.html" class="nav-link">Home</a></li>
+        <li><a href="{{headerstuff['baseURLForFrontEnd']}}events.html" class="nav-link">Events</a></li>
+        <li><a href="{{headerstuff['baseURLForFrontEnd']}}people.html" class="nav-link">People</a></li>
+      </ul>
+<!--       <ul class="social js-clone-nav">
+        <li><a href="#"><span class="icon-facebook"></span></a></li>
+        <li><a href="#"><span class="icon-twitter"></span></a></li>
+        <li><a href="#"><span class="icon-instagram"></span></a></li>
+      </ul> -->
+    </div>
+  </header> 
+
+  <main class="main-content">
+    <h2 class="heading text-uppercase text-white aos-init aos-animate" data-aos="fade-up">{{headerstuff["headline"]}}</h2>
+
+<!--     <section class="site-section-hero bg-image" style="background-image: url('images/img_9.jpg');"  data-stellar-background-ratio="0.5" id="section-home">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-7 text-center">
+            <h1 class="text-white heading text-uppercase" data-aos="fade-up">Welcome</h1>
+            <p class="lead text-white mb-5" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore animi accusantium voluptatum saepe. Natus nihil, facere corporis numquam, architecto dolorum.</p>
+            <p data-aos="fade-up" data-aos-delay="100"><a href="#section-contact" class="btn btn-primary btn-md smoothscroll">Contact Me</a></p>
+          </div>
+        </div>
+      </section> -->
+
+    <div class="container-fluid">
+        
+      
+
+
+      <section class="row align-items-stretch photos" id="section-photos">
+        <div class="col-12">
+        <div class="row align-items-stretch">
+        {% for item in picList %}
+        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
+         <a href="{{headerstuff['baseURLForPhotos']}}{{item.bigurl}}" class="d-block photo-item" data-fancybox="gallery" data-download-src="{{headerstuff['baseURLForPhotos']}}{{item.bigurl}}">
+            <div style="position: relative;">
+              <img class="lozad" src="{{headerstuff['baseURLForFrontEnd']}}images/placeholder-mand.png" style="object-position: {{item.tnXPos}}% {{item.tnYPos}}%;" data-src="{{headerstuff['baseURLForPhotos']}}{{item.smallurl}}" alt="Image" class="img-fluid">
+              <div style="color: #FF00FF; position: absolute; top: {{item.tnYPos}}%; left: {{item.tnXPos}}%; font-size: 40px;">*</div>
+              </div>
+            <div class="photo-text-more">
+              <span class="icon icon-search"></span>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+
+      </div>
+        
+    </div>
+      </section> <!-- #section-photos -->
+
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center py-5">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</div> <!-- .site-wrap -->
+
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/jquery-3.3.1.min.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/jquery.easing.1.3.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/jquery-ui.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/popper.min.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/bootstrap.min.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/owl.carousel.min.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/jquery.stellar.min.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/jquery.countdown.min.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/jquery.magnific-popup.min.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/bootstrap-datepicker.min.js"></script>
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/aos.js"></script>
+  
+
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/fancybox.umd.js"></script>
+
+  <script src="{{headerstuff['baseURLForFrontEnd']}}js/main.js"></script>
+  <script type="text/javascript" src="{{headerstuff['baseURLForFrontEnd']}}/js/lozad.min.js"></script>
+
+  <script>
+      const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+      observer.observe();
+  </script>
+  <script>
+    Fancybox.bind('[data-fancybox="gallery"]',{
+      Toolbar: {
+        display:{
+          left:["infobar"],
+          middle:[],
+          right:["slideshow", "download", "thumbs", "close",],
+        }
+        }})
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1ZG5K7T2G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z1ZG5K7T2G');
+  </script>
+    
+  </body>
+</html>
