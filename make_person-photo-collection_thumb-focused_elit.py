@@ -14,13 +14,11 @@ cur.execute('PRAGMA foreign_keys = ON')
 
 baseURLForFrontEnd = "/Users/shashithuryrajaponraja/dev-projects/face-detect/static/"
 baseURLForPhotos = "/Users/Shared/Wedding stuff/Photos/"
-subDirectoryForOutput = "admin/people/"
+subDirectoryForOutput = "test/people/"
 outputDirectory_full = f"{baseURLForFrontEnd}{subDirectoryForOutput}"
-
-os.makedirs(outputDirectory_full, exist_ok = True)
 onlineURLForImages = 'https://s3.ap-southeast-1.amazonaws.com/shashi-and-trisha-wedd.ing/'
 
-personID = 40
+personID = 42
 
 sqlCall = f'SELECT face_name, face_URL FROM faces WHERE face_id = {personID}'
 z = cur.execute(sqlCall)
@@ -78,6 +76,9 @@ output = template.render(headerstuff = myNewHeader, picList = photoListInDict)
 
 # printing the output on screen
 # print(output)
+filename_withFullPath = f"{outputDirectory_full}{outputHTML_filename}"
+filePath_full = os.path.split(filename_withFullPath)[0]
+os.makedirs(filePath_full, exist_ok = True)
 
-with open(f"{outputDirectory_full}{outputHTML_filename}", 'w') as f:
+with open(f"{filename_withFullPath}", 'w') as f:
     print(output, file = f)
